@@ -3,4 +3,5 @@
 /node_modules/@saekitominaga/*
 !/node_modules/@saekitominaga/customelements-input-date-totext/
 !/node_modules/@saekitominaga/customelements-input-isbn/
+!/node_modules/@saekitominaga/isbn-verify/
 tsconfig.tsbuildinfo
