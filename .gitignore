@@ -1,0 +1,6 @@
+/node_modules/*
+!/node_modules/@saekitominaga/
+/node_modules/@saekitominaga/*
+!/node_modules/@saekitominaga/customelements-input-date-totext/
+!/node_modules/@saekitominaga/customelements-input-isbn/
+tsconfig.tsbuildinfo

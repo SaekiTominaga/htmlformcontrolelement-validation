@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>`FormControlValidation.js` Demo</title>
+		<style>
+			input {
+				padding: 0.5em;
+			}
+
+			button {
+				padding: 1em;
+			}
+
+			.form td {
+				padding: 0.5em 0;
+			}
+			.form td:first-child {
+				padding-top: calc(0.5em + 0.5em);
+				vertical-align: top;
+			}
+			.form td + td {
+				padding: 0.5em 0 0.5em 1em;
+			}
+
+			.validation {
+				margin: 0.25em 0 0;
+				color: #e00;
+				background: #fff;
+			}
+			.validation::before {
+				margin-right: 0.5em;
+				content: '⚠';
+			}
+		</style>
+		<script type="module">
+			import FormControlValidation from './dist/FormControlValidation.js';
+			import InputDateToText from './node_modules/@saekitominaga/customelements-input-date-totext/dist/InputDateToText.js';
+			import InputIsbn from './node_modules/@saekitominaga/customelements-input-isbn/dist/InputIsbn.js';
+
+			for (const formControlElement of document.querySelectorAll('.js-validation')) {
+				new FormControlValidation(formControlElement);
+			}
+
+			customElements.define('input-date-to-text', InputDateToText, {
+				extends: 'input',
+			});
+			customElements.define('input-isbn', InputIsbn, {
+				extends: 'input',
+			});
+		</script>
+	</head>
+	<body>
+		<h1>`FormControlValidation.js` Demo</h1>
+
+		<form method="post">
+			<table class="form">
+				<tbody>
+					<tr>
+						<td><label for="input-user">User Name (alphanumeric only・required)</label></td>
+						<td>
+							<input
+								class="js-validation"
+								id="input-user"
+								required=""
+								pattern="[a-zA-Z0-9]+"
+								data-validation-message-for="validation-user"
+								data-validation-message-pattern="Only alphanumeric characters can be used in the user name."
+							/>
+							<p hidden="" class="validation" id="validation-user"></p>
+						</td>
+					</tr>
+					<tr>
+						<td>Sex (required)</td>
+						<td>
+							<label><input type="radio" name="sex" class="js-validation" required="" data-validation-message-for="validation-sex" />Male</label>
+							<label><input type="radio" name="sex" class="js-validation" required="" data-validation-message-for="validation-sex" />Female</label>
+							<label><input type="radio" name="sex" class="js-validation" required="" data-validation-message-for="validation-sex" />Neither</label>
+							<p hidden="" class="validation" id="validation-sex"></p>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="input-birthday">Birthday (optional)</label></td>
+						<td>
+							<input
+								is="input-date-to-text"
+								type="date"
+								min="1903-01-02"
+								class="js-validation"
+								id="input-birthday"
+								data-validation-message-for="validation-birthday"
+								data-validation-message-pattern="The date format is different."
+								data-validation-message-date-noexist="A date that does not exist."
+								data-validation-message-date-min="If you were really born before January 2, 1903 A.D., please register with Guinness first instead of filling out a form like this."
+							/>
+							<p hidden="" class="validation" id="validation-birthday"></p>
+							<p>
+								* Example in combination with
+								<a href="https://www.npmjs.com/package/@saekitominaga/customelements-input-date-totext">@saekitominaga/customelements-input-date-totext</a>. You
+								can also perform non-existent date checks such as "February 30" that cannot be checked with the `<code>pattern</code>` attribute.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="input-isbn">ISBN (optional)</label></td>
+						<td>
+							<input
+								is="input-isbn"
+								class="js-validation"
+								id="input-isbn"
+								data-validation-message-for="validation-isbn"
+								data-validation-message-pattern="ISBN format is different."
+								data-validation-message-isbn-checkdigit="ISBN check digit is different."
+							/>
+							<p hidden="" class="validation" id="validation-isbn"></p>
+							<p>
+								* Example in combination with
+								<a href="https://www.npmjs.com/package/@saekitominaga/customelements-input-isbn">@saekitominaga/customelements-input-isbn</a>. You can also
+								check the check digit.
+							</p>
+							<ul>
+								<li>Correct example: 978-4-06-519981-7</li>
+								<li>Illegal check digit example: 978-4-06-519981-0</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p><button>Submit</button></p>
+		</form>
+	</body>
+</html>

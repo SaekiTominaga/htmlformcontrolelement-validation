@@ -1,2 +1,49 @@
-# htmlformcontrolelement-validation
-Input validation of form control.
+# Input validation of form control
+
+[![npm version](https://badge.fury.io/js/%40saekitominaga%2Fhtmlformcontrolelement-validation.svg)](https://badge.fury.io/js/%40saekitominaga%2Fhtmlformcontrolelement-validation)
+
+## Demo
+
+- [Demo page](https://saekitominaga.github.io/htmlformcontrolelement-validation/demo.html)
+
+## Examples
+
+```
+<script type="module">
+import FormControlValidation from './dist/FormControlValidation.js';
+
+for (const formControlElement of document.querySelectorAll('.js-validation')) {
+  new FormControlValidation(formControlElement);
+}
+</script>
+
+<p><input class="js-validation" pattern="[a-zA-Z0-9]+"
+  data-validation-message-for="validation-input-1"
+  data-validation-message-pattern="Only alphanumeric characters can be used."
+/></p>
+<p hidden="" id="validation-input-1"></p>
+```
+
+## Constructor
+
+```
+new FormControlValidation(
+  thisElement: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+)
+```
+
+### Parameters
+
+<dl>
+<dt>thisElement [required]</dt>
+<dd>Target element</dd>
+</dl>
+
+## HTMLElement Attributes
+
+<dl>
+<dt>data-validation-message-for [required]</dt>
+<dd>ID of the element that displays the validation message.</dd>
+<dt>data-validation-message-pattern [optional]</dt>
+<dd>Error message when it does not match the pattern attribute value. (If omitted, the default message of the browser is displayed.)</dd>
+</dl>
