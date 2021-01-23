@@ -8,7 +8,7 @@
 
 ## Examples
 
-```
+```HTML
 <script type="module">
 import FormControlValidation from './dist/FormControlValidation.js';
 
@@ -26,7 +26,7 @@ for (const formControlElement of document.querySelectorAll('.js-validation')) {
 
 ## Constructor
 
-```
+```TypeScript
 new FormControlValidation(
   thisElement: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 )
