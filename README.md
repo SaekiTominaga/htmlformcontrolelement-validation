@@ -28,7 +28,8 @@ for (const formControlElement of document.querySelectorAll('.js-validation')) {
 
 ```TypeScript
 new FormControlValidation(
-  thisElement: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  thisElement: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement,
+  invalidClassName?: string
 )
 ```
 
@@ -37,6 +38,8 @@ new FormControlValidation(
 <dl>
 <dt>thisElement [required]</dt>
 <dd>Target element</dd>
+<dt>invalidClassName [optional]</dt>
+<dd>Class name to be added when invalid</dd>
 </dl>
 
 ## HTMLElement Attributes
