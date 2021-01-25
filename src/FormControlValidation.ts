@@ -5,8 +5,11 @@ export default class {
 	#thisElement: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement; // 対象要素
 
 	#invalidClassName: string | undefined; // invalid 時に追加するクラス名
-	#messageElement: HTMLElement; // バリデーションメッセージを表示する要素
+	#messageElement!: HTMLElement; // バリデーションメッセージを表示する要素
 	#patternMessage: string | undefined; // pattern 属性値にマッチしない場合のエラー文言
+
+	#changeEventListener: () => void;
+	#invalidEventListener: (ev: Event) => void;
 
 	/**
 	 * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} thisElement - Target element
@@ -16,6 +19,14 @@ export default class {
 		this.#thisElement = thisElement;
 		this.#invalidClassName = invalidClassName;
 
+		this.#changeEventListener = this._changeEvent.bind(this);
+		this.#invalidEventListener = this._invalidEvent.bind(this);
+	}
+
+	/**
+	 * Initial processing
+	 */
+	init(): void {
 		const messageElementId = this.#thisElement.dataset.validationMessageFor;
 		if (messageElementId === undefined) {
 			throw new Error('Attribute: `data-validation-message-for` is not set.');
@@ -34,11 +45,8 @@ export default class {
 			this.#patternMessage = patternMessage;
 		}
 
-		const changeEventListener = this._changeEvent.bind(this);
-		const invalidEventListener = this._invalidEvent.bind(this);
-
-		this.#thisElement.addEventListener('change', changeEventListener, { passive: true });
-		this.#thisElement.addEventListener('invalid', invalidEventListener);
+		this.#thisElement.addEventListener('change', this.#changeEventListener, { passive: true });
+		this.#thisElement.addEventListener('invalid', this.#invalidEventListener);
 	}
 
 	/**

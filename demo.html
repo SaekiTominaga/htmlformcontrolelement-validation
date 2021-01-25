@@ -39,7 +39,8 @@
 			import InputIsbn from './node_modules/@saekitominaga/customelements-input-isbn/dist/InputIsbn.js';
 
 			for (const formControlElement of document.querySelectorAll('.js-validation')) {
-				new FormControlValidation(formControlElement);
+				const formControlValidation = new FormControlValidation(formControlElement);
+				formControlValidation.init();
 			}
 
 			customElements.define('input-date-to-text', InputDateToText, {

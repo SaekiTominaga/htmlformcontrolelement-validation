@@ -9,6 +9,10 @@ export default class {
      */
     constructor(thisElement: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement, invalidClassName?: string);
     /**
+     *
+     */
+    init(): void;
+    /**
      * フォームコントロールの内容が変更されたときの処理
      */
     private _changeEvent;

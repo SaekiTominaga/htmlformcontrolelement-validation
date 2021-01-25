@@ -11,7 +11,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     }
     return privateMap.get(receiver);
 };
-var _thisElement, _invalidClassName, _messageElement, _patternMessage;
+var _thisElement, _invalidClassName, _messageElement, _patternMessage, _changeEventListener, _invalidEventListener;
 /**
  * Input validation of form control
  */
@@ -25,8 +25,17 @@ export default class {
         _invalidClassName.set(this, void 0); // invalid 時に追加するクラス名
         _messageElement.set(this, void 0); // バリデーションメッセージを表示する要素
         _patternMessage.set(this, void 0); // pattern 属性値にマッチしない場合のエラー文言
+        _changeEventListener.set(this, void 0);
+        _invalidEventListener.set(this, void 0);
         __classPrivateFieldSet(this, _thisElement, thisElement);
         __classPrivateFieldSet(this, _invalidClassName, invalidClassName);
+        __classPrivateFieldSet(this, _changeEventListener, this._changeEvent.bind(this));
+        __classPrivateFieldSet(this, _invalidEventListener, this._invalidEvent.bind(this));
+    }
+    /**
+     *
+     */
+    init() {
         const messageElementId = __classPrivateFieldGet(this, _thisElement).dataset.validationMessageFor;
         if (messageElementId === undefined) {
             throw new Error('Attribute: `data-validation-message-for` is not set.');
@@ -42,10 +51,8 @@ export default class {
         if (patternMessage !== undefined) {
             __classPrivateFieldSet(this, _patternMessage, patternMessage);
         }
-        const changeEventListener = this._changeEvent.bind(this);
-        const invalidEventListener = this._invalidEvent.bind(this);
-        __classPrivateFieldGet(this, _thisElement).addEventListener('change', changeEventListener, { passive: true });
-        __classPrivateFieldGet(this, _thisElement).addEventListener('invalid', invalidEventListener);
+        __classPrivateFieldGet(this, _thisElement).addEventListener('change', __classPrivateFieldGet(this, _changeEventListener), { passive: true });
+        __classPrivateFieldGet(this, _thisElement).addEventListener('invalid', __classPrivateFieldGet(this, _invalidEventListener));
     }
     /**
      * フォームコントロールの内容が変更されたときの処理
@@ -116,5 +123,5 @@ export default class {
         __classPrivateFieldGet(this, _messageElement).textContent = '';
     }
 }
-_thisElement = new WeakMap(), _invalidClassName = new WeakMap(), _messageElement = new WeakMap(), _patternMessage = new WeakMap();
+_thisElement = new WeakMap(), _invalidClassName = new WeakMap(), _messageElement = new WeakMap(), _patternMessage = new WeakMap(), _changeEventListener = new WeakMap(), _invalidEventListener = new WeakMap();
 //# sourceMappingURL=FormControlValidation.js.map

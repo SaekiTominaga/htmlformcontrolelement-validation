@@ -13,7 +13,8 @@
 import FormControlValidation from './dist/FormControlValidation.js';
 
 for (const formControlElement of document.querySelectorAll('.js-validation')) {
-  new FormControlValidation(formControlElement);
+  const formControlValidation = new FormControlValidation(formControlElement);
+  formControlValidation.init();
 }
 </script>
 
