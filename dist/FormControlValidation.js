@@ -33,7 +33,7 @@ export default class {
         __classPrivateFieldSet(this, _invalidEventListener, this._invalidEvent.bind(this));
     }
     /**
-     *
+     * Initial processing
      */
     init() {
         const messageElementId = __classPrivateFieldGet(this, _thisElement).dataset.validationMessageFor;

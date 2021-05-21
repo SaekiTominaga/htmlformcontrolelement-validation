@@ -9,7 +9,7 @@ export default class {
      */
     constructor(thisElement: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement, invalidClassName?: string);
     /**
-     *
+     * Initial processing
      */
     init(): void;
     /**
