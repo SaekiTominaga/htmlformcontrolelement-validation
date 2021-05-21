@@ -37,17 +37,17 @@ new FormControlValidation(
 ### Parameters
 
 <dl>
-<dt>thisElement [required]</dt>
+<dt><code>thisElement</code> [required]</dt>
 <dd>Target element</dd>
-<dt>invalidClassName [optional]</dt>
+<dt><code>invalidClassName</code> [optional]</dt>
 <dd>Class name to be added when invalid</dd>
 </dl>
 
 ## HTMLElement Attributes
 
 <dl>
-<dt>data-validation-message-for [required]</dt>
+<dt><code>data-validation-message-for</code> [required]</dt>
 <dd>ID of the element that displays the validation message.</dd>
-<dt>data-validation-message-pattern [optional]</dt>
+<dt><code>data-validation-message-pattern</code> [optional]</dt>
 <dd>Error message when it does not match the pattern attribute value. (If omitted, the default message of the browser is displayed.)</dd>
 </dl>
