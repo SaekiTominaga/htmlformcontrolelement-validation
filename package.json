@@ -24,10 +24,6 @@
 		"build": "tsc",
 		"watch": "tsc -w"
 	},
-	"dependencies": {
-		"@saekitominaga/customelements-input-date-totext": "^1.1.1",
-		"@saekitominaga/customelements-input-isbn": "^1.1.2"
-	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^4.24.0",
 		"@typescript-eslint/parser": "^4.24.0",
